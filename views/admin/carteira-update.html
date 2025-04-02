@@ -1,0 +1,71 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+<!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Carteira </h1>
+          </div><!-- /.col -->
+          
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+<!-- Main content -->
+<div class="content">
+      <div class="container-fluid">
+        <div class="row">
+  	<div class="col-md-12">
+  		<div class="card">
+        <div class="card-header with-border">
+          <h3 class="card-title">Carregamento da Carteira</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form role="form" action="http://159.89.52.185:8080/carteiras/{$carteira.id}" method="post" enctype="multipart/form-data">
+          <div class="card-body">
+            <div class="form-group">
+              <label for="passageiro">Passageiro</label>
+              <input type="number" class="form-control" id="passageiro" name="passageiro" value="{$carteira.id}" readonly>
+            </div>
+            <div class="form-group">
+              <label for="passageiro">Saldo actual</label>
+              <input type="number" class="form-control" id="passageiro" name="passageiro" value="{$carteira.saldo}" readonly>
+            </div>
+            <div class="form-group">
+              <label for="metodo_pagamento">Data do carregamento</label>
+              <input type="text" class="form-control" id="metodo_pagamento" name="metodo_carregamento" value="{$carteira.data_carregamento}" readonly>
+            </div>
+            <div class="form-group">
+              <label for="metodo_carregamento">Metodo de carregamento</label>
+              <input type="text" class="form-control" id="metodo_carregamento" name="metodo_carregamento" value="{$carteira.metodo_carregamento}" readonly>
+            </div>
+            <div class="form-group">
+              <label for="valor">Valor</label>
+              <input type="number" class="form-control" id="taxa" name="valor" value="{$carteira.valor}" readonly>
+            </div>
+            <div class="form-group">
+              <label for="comprovativo">Comprovativo</label>
+              <img src="http://159.89.52.185:8080/{$carteira.comprovativo}" width="100%">
+            </div>
+            
+          </div>
+          <!-- /.box-body -->
+          <div class="card-footer">
+            {if="$carteira.status==1"}
+            <button type="submit" class="btn btn-primary btn-block">Validar Carregamento </button>
+            <a href="http://159.89.52.185:8080/carteiras/{$carteira.id}/delete" onclick="return confirm('Deseja realmente anular este registro?')" class="btn btn-danger btn-block"><i class="fa fa-trash"></i> Anular</a>
+            {/if}
+          </div>
+        </form>
+      </div>
+  	</div>
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

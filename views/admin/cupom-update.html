@@ -1,0 +1,76 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+<!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Cupom </h1>
+          </div><!-- /.col -->
+          
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+<!-- Main content -->
+<div class="content">
+      <div class="container-fluid">
+        <div class="row">
+  	<div class="col-md-12">
+  		<div class="card">
+        <div class="card-header with-border">
+          <h3 class="card-title">Editar Registo</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form role="form" action="http://159.89.52.185:8080/cupom/{$cupom.id}" method="post" enctype="multipart/form-data">
+          <div class="card-body">
+            
+            <div class="form-group">
+              <label for="codigo"> Código </label>
+              <input type="text" value="{$cupom.codigo}" class="form-control" id="codigo" name="codigo" maxlength="30" required="required">
+            </div>
+            <div class="form-group">
+              <label for="tipo"> Tipo</label>
+              <select class="form-control" id="tipo" name="tipo">
+                    <option value="{$cupom.tipo}">{$cupom.tipo}</option>
+                    <option value="Automatico">Automatico</option>
+                    <option value="Manual">Manual</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="desconto"> Desconto (%)</label>
+              <input type="number" value="{$cupom.desconto}" class="form-control" id="desconto" name="desconto" min="0" max="100">
+            </div>
+            <div class="form-group">
+              <label for="data_validade"> Data de validade</label>
+              <input type="date" value="{$cupom.data_validade}" class="form-control" id="data_validade" name="data_validade">
+            </div>
+            {if="$empresa.tipo=='Geral'"}
+            <div class="form-group">
+              <label for="empresa">Região</label>
+              <select type="text" class="form-control" id="empresa" name="empresa">
+                <option value="{$cupom.empresa}"> {$cupom.nome_empresa} </option>
+                {loop="$lista_empresas"}
+                <option value="{$value.id}">{$value.nome}</option>
+                {/loop}
+              </select>
+            </div>
+            {/if}
+            
+          </div>
+          <!-- /.box-body -->
+          <div class="card-footer">
+            <button type="submit" class="btn btn-primary btn-block">Salvar alterações</button>
+          </div>
+        </form>
+      </div>
+  	</div>
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

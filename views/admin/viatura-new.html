@@ -1,0 +1,52 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+<!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Motorizada </h1>
+          </div><!-- /.col -->
+          
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+<!-- Main content -->
+<div class="content">
+      <div class="container-fluid">
+        <div class="row">
+  	<div class="col-md-12">
+  		<div class="card">
+        <div class="card-header with-border">
+          <h3 class="card-title">Novo Registo</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form role="form" action="http://159.89.52.185:8080/viaturas/new" method="post">
+          <div class="card-body">
+            <div class="form-group">
+              <label for="tipo">Tipo</label>
+              <input type="text" class="form-control" id="tipo" name="tipo" maxlength="60" required="required">
+            </div>
+            
+            <div class="form-group">
+              <label for="descricao">Descrição</label>
+              <input type="text" class="form-control" id="descricao" name="descricao" maxlength="30" required="required">
+            </div>
+           
+          </div>
+          <!-- /.box-body -->
+          <div class="card-footer">
+            <button type="submit" class="btn btn-primary btn-block">Cadastrar</button>
+          </div>
+        </form>
+      </div>
+  	</div>
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+</div>
+<!-- /.content-wrapper -->

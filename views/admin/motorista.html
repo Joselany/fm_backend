@@ -1,0 +1,126 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+<!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h3>Formulário de motoqueiros</h3>
+            <strong class="m-0 text-dark">Foram encontrados {$total_motoristas} registo(s)...</strong>
+          </div><!-- /.col -->
+          
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+<!-- Main content -->
+<div class="content">
+      <div class="container-fluid">
+        <div class="row">
+  	<div class="col-md-12">
+  		<div class="card">
+            
+            <div class="card-header">
+              <div class="card-tools">
+
+                <form action="http://159.89.52.185:8080/motoristas">
+                  <div class="input-group input-group-md">
+                    <select name="regiao" class="form-control">
+                        {if="$regiao!=''"}<option value="{$regiao}">{$regiao}</option>{else}<option value="">Todas regiões</option>{/if}
+                        <option value="">Todas regiões</option>
+                        {loop="$regioes"}
+                        <option value="{$value.provincia}">{$value.provincia}</option>
+                        {/loop}
+                    </select>
+                    <select name="filtro" class="form-control">
+                        {if="$filtro!=''"}<option value="{$filtro}">{$filtro}</option>{else}<option value="">Todos estados</option>{/if}
+
+                        <option value="">Todos estados</option>
+                        <option value="Activos">Activos</option> 
+                        <option value="Candidaturas">Candidaturas</option>
+                        <option value="Rejeitados">Rejeitados</option>    
+                    </select>
+                    <input type="text" name="search" class="form-control float-right" placeholder="Procurar" value="{$search}">
+                    <div class="input-group-append">
+                      <button type="submit" class="btn btn-default"><i class="fas fa-filter"></i></button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <div class="card-body p-2">
+              <table class="table table-bordered table-hover dataTable">
+                <thead>
+                  <tr>
+                    <th>&nbsp;</th>
+                    <th>Foto</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Telefone</th>
+                    <th>Documentos</th>
+                    <th>&nbsp;</th>
+                    <th>&nbsp;</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {loop="$motorista"}
+                  <tr>
+                    <td>{$value.id}</td>
+                    <td>
+                     
+                      <img src="http://159.89.52.185:8080/{$value.foto}" width="75">
+                   
+                    </td>
+                    <td>{$value.nome} {$value.apelido}</td>
+                    <td>{$value.email}</td>
+                    <td>{$value.telefone}</td>
+                    <td>{if="$value.status_cadastro!=-1"}<a href="http://159.89.52.185:8080/motoristas/{$value.id}" class="btn btn-primary btn-md"><i class=""></i> Consultar </a>{/if}</td>
+                    <td></td>
+                    
+                      {if="$value.status_cadastro==0"}
+                      <td>
+                        <a href="http://159.89.52.185:8080/motoristas/{$value.id}/activar" onclick="return confirm('Deseja realmente activar este motorista?')" class="btn btn-success btn-sm"><i class=""></i> Activar </a>
+                      </td>
+                      <td>
+                        <form action="http://159.89.52.185:8080/motoristas/{$value.id}/excluir" method="get">
+                          <input type="text" name="justificativa" required>
+                            <input type="submit" onclick="return confirm('Deseja realmente excluir este motorista?')" class="btn btn-danger btn-sm" value="Excluir">
+                        </form>
+                      </td>
+                      {/if}
+                    
+                      {if="$value.status_cadastro==1"}
+                      <td>
+                        <a href="http://159.89.52.185:8080/motoristas/{$value.id}/desactivar" onclick="return confirm('Deseja realmente desactivar este motorista?')" class="btn btn-danger btn-sm"><i class=""></i> Desactivar</a>
+                      </td><td>&nbsp;</td>
+                      {/if}
+                      {if="$value.status_cadastro==-1"}
+                      <td>
+                        <a href="http://159.89.52.185:8080/motoristas/{$value.id}/activar" onclick="return confirm('Deseja realmente reactivar este motorista?')" class="btn btn-success btn-sm"><i class=""></i> Reconsiderar</a>
+                      </td><td>&nbsp;</td>
+                      {/if}
+                    </td>
+                  </tr>
+                  {/loop}
+                </tbody>
+              </table>
+            </div>
+            <!-- /.box-body -->
+            <div class="card-footer clearfix">
+              <ul class="pagination pagination-md m-1 float-right">
+                {loop="$pages"}
+                <li><a class="page-link" href="{$value.href}">{$value.text}</a></li>
+                {/loop}
+              </ul>
+            </div>
+          </div>
+  	</div>
+  </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

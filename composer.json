@@ -1,0 +1,20 @@
+{
+    "name": "dinhovatuva/ecommerce",
+    "authors": [
+        {
+            "name": "Adolfo Vatuva",
+            "email": "dinhovatuva@gmail.com"
+        }
+    ],
+    "require": {
+    	"slim/slim":"2.0",
+    	"rain/raintpl":"3.0.0",
+	"phpmailer/phpmailer": "~6.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Core\\": "vendor\\core\\php-classes\\src"
+        }
+    }
+}
+

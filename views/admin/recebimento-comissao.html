@@ -1,0 +1,126 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+<!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-12">
+            <h3>Recebimento de comissões</h3>
+            
+            <span style="font-size: 18px;"><strong>Nome: </strong>{$dados_motorista.nome} {$dados_motorista.apelido}</span><br>
+            <span style="font-size: 15px;"><strong>Valor recebido:</strong> <span class="money">{$valor_recebido}</span> | <strong>Valor por receber:</strong> <span class="money">{$valor_por_receber}</span></span>
+            <br><br>
+            <p class="m-0 text-dark">Foram encontrados {$total_viagens} registo(s)...</p>
+          </div><!-- /.col -->
+          <div class="col-sm-12 text-right">
+            <a href="" onclick="window.print(); return false;"><span class="fa fa-print"></span> Imprimir</a>
+            
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+<!-- Main content -->
+<div class="content">
+      <div class="container-fluid">
+        <div class="row">
+  	<div class="col-md-12">
+  		<div class="card">
+            
+            <div class="card-header">
+              <form action="http://159.89.52.185:8080/recebimento-comissao" method="get">
+                <div class="row"> 
+                <div class="col-md-2 m-0">
+                  <label> De: </label> 
+                  <input type="date" name="de" value="{$de}" class="form-control" style="display: inline; width: 80%;">
+                </div>
+                <div class="col-md-2 m-0"> 
+                  <label> à: </label> 
+                  <input type="date" name="ate" value="{$ate}" class="form-control" style="display: inline; width: 80%;">
+                </div>
+                <div class="col-md-7 p-0 m-0">
+                  <select name="regiao" class="form-control" style="display: inline; width: 30%;">
+                        {if="$regiao!=''"}<option value="{$regiao}"> {$nome_regiao}</option>{else}<option value="">Todas regiões</option>{/if}
+                        <option value="">Todas regiões</option>
+                        {loop="$regioes"}
+                        <option value="{$value.id}">{$value.provincia}</option>
+                        {/loop}
+                  </select>
+                  <select name='status_pedido' class="form-control" style="display: inline; width: 32%;">
+                      <option value="{$status_pedido}">
+                         {if="$status_pedido==-1"}Todos estados{/if}
+                         {if="$status_pedido==0"}Cancelada{/if}
+                         {if="$status_pedido==4"}Em curso{/if}
+                         {if="$status_pedido==5"}Parada{/if}
+                         {if="$status_pedido==6"}Retomada{/if}
+                         {if="$status_pedido==7"}A efetuar pagamento{/if}
+                         {if="$status_pedido==8"}Realizada{/if}</option>
+                      <option value="8">Realizada</option>  
+                  </select>
+                  <input type="text" name='num_motorista' value="{$num_motorista}" class="form-control" style="display:inline; width:32%">
+                </div>
+                <div class="col-md-1 p-0 m-0">
+                  <button class="btn btn-md btn-default btn-block"><i class="fas fa-filter"></i></button>
+                </div>
+                </div>
+              </form>
+            </div>
+
+            <div class="card-body p-1">
+              <table class="table table-bordered table-hover dataTable">
+                <thead>
+                  <tr>
+                    <th style="width: 10px">#</th>
+                    <th>Origem</th>
+                    <th>Destino</th>
+                    <th>Região</th>
+                    <th>Motorista</th>
+                    <th>Passageiro</th>
+                    <th>{if="$status_pedido==8"} Valor {/if} {if="$status_pedido==0"} Cancelado por {/if}</th>
+                    <th>Comissão</th>
+                    <th>Receber</th>
+                    <!--<th> </th>-->
+                  </tr>
+                </thead>
+                <tbody>
+                  <form action="http://159.89.52.185:8080/recebimento-comissao" method="post">
+                  <tr ><td colspan="9" class="p-2"><input type="submit" class="btn btn-block" value="Clique aqui para processar"></td></tr>
+                  {loop="$viagens"}
+                  <tr>
+                    <td> {$value.id}</td>
+                    <td> {$value.desc_origem}</td>
+                    <td> {$value.desc_destino}</td>
+                    <td> {$value.regiao}</td>
+                    <td> {$value.nome_motorista}</td>
+                    <td> {$value.nome_passageiro}</td>
+                    <td> {if="$value.status_pedido==8"} <span class="money">{$value.valor}</span> {/if} {if="$value.status_pedido==0"} {$value.cancelado_por} {/if}</td>
+                    <td> {$value.comissao} %</td>
+                    <td class="text-center">
+                        {if="$value.status_comissao==1"} 
+                            <input type="checkbox" value="{$value.id}" name="{$value.id}">
+                        {else} Recebida {/if}
+                    </td>
+                     <!--<th> </th>-->
+                  </tr>
+                  {/loop}
+                  </form>
+                </tbody>
+              </table>
+            </div>
+            <!-- /.box-body -->
+            <div class="card-footer clearfix">
+              
+              <ul class="pagination pagination-sm m-0 float-right">
+                
+              </ul>
+            </div>
+          </div>
+  	</div>
+  </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

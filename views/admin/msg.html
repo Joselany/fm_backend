@@ -1,0 +1,97 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+<!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Caixa de Entrada</h1>
+          </div><!-- /.col -->
+          
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+<!-- Main content -->
+    <div class="content">
+      <div class="container-fluid">
+        <div class="row">
+  	     <div class="col-md-12">
+
+          <div class="card">
+            <div class="card-header with-border">
+              <h3 class="card-title"> </h3>
+              <div class="card-tools">
+                <form action="http://159.89.52.185:8080/config/msg">
+                  <div class="input-group input-group-sm" style="width: 150px;">
+                    <input type="text" name="search" class="form-control float-right" placeholder="Procurar" value="{$search}">
+                    <div class="input-group-append">
+                      <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <!-- /.box-tools -->
+            </div>
+            <!-- /.box-header -->
+            <div class="card-body table-responsive p-0">
+              <div class="mailbox-controls">
+                <!-- Check all button -->
+                <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="far fa-square"></i>
+                </button><!--
+                <div class="btn-group">
+                  <button type="button" class="btn btn-default btn-sm"><i class="far fa-trash-alt"></i></button>
+                </div>
+                <!-- /.btn-group --><!--
+                <button type="button" class="btn btn-default btn-sm"><i class="fas fa-refresh"></i></button> -->
+                <div class="float-right">
+                  
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
+                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
+                  </div>
+                  <!-- /.btn-group -->
+                </div>
+                <!-- /.pull-right -->
+              </div>
+              <div class="table-responsive mailbox-messages">
+                <table class="table table-hover table-striped">
+                  <tbody>
+                       {loop="$msg"}
+                  		<tr>
+                    		<td><input type="checkbox" value="{$value.num}"></td>
+                    		<td class="mailbox-star"><a href="/config/msg/{$value.num}">{$value.name}</a></td>
+                    		<td class="mailbox-name"><a href="/config/msg/{$value.num}">{$value.email}</a></td>
+                    		<td class="mailbox-subject">{$value.subject}</td>
+                    		<td class="mailbox-attachment"></td>
+                    		<td class="mailbox-date">{$value.date}</td>
+                  	   </tr>
+                      {/loop}
+                  </tbody>
+                </table>
+                <!-- /.table -->
+              </div>
+              <!-- /.mail-box-messages -->
+            </div>
+            <!-- /.box-body -->
+
+            <div class="card-footer">
+              <ul class="pagination pagination-sm m-0 float-right">
+                {loop="$pages"}
+                <li><a class="page-link" href="{$value.href}">{$value.text}</a></li>
+                {/loop}
+              </ul>
+            </div>
+          </div>
+          <!-- /. box -->
+
+        </div>
+        <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

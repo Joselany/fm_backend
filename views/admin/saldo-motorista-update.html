@@ -1,0 +1,76 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+<!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Carregamento de Saldo dos Motoqueiros </h1>
+          </div><!-- /.col -->
+          
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+<!-- Main content -->
+<div class="content">
+      <div class="container-fluid">
+        <div class="row">
+  	<div class="col-md-12">
+  		<div class="card">
+        <div class="card-header with-border">
+          <h3 class="card-title"> </h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form role="form" action="http://159.89.52.185:8080/saldo-motoristas/{$saldo_motorista.id}" method="post" enctype="multipart/form-data">
+          <div class="card-body">
+            <div class="form-group">
+              <label for="passageiro">Motoqueiro</label>
+              <input type="number" class="form-control" id="passageiro" name="passageiro" value="{$saldo_motorista.id}" readonly>
+            </div>
+            <div class="form-group">
+              <label for="passageiro">Saldo actual</label>
+              <input type="number" class="form-control" id="passageiro" name="passageiro" value="{$saldo_motorista.saldo}" readonly>
+            </div>
+            <div class="form-group">
+              <label for="metodo_pagamento">Data do carregamento</label>
+              <input type="text" class="form-control" id="metodo_pagamento" name="metodo_carregamento" value="{$saldo_motorista.data_movimento}" readonly>
+            </div>
+            <div class="form-group">
+              <label for="metodo_carregamento">Metodo de carregamento</label>
+              <input type="text" class="form-control" id="metodo_carregamento" name="metodo_carregamento" value="{$saldo_motorista.metodo_movimento}" readonly>
+            </div>
+            <div class="form-group">
+              <label for="valor">Valor</label>
+              <input type="number" class="form-control" id="taxa" name="valor" value="{$saldo_motorista.valor}" readonly>
+            </div>
+            <div class="form-group">
+              <label for="comprovativo">Comprovativo</label>
+              {if="$saldo_motorista.tipo_comprovativo=='Img'"}
+                <img src="http://159.89.52.185:8080/{$saldo_motorista.comprovativo}" width="100%">
+              {/if}
+              {if="$saldo_motorista.tipo_comprovativo=='Pdf'"}
+                <a href="http://159.89.52.185:8080/saldo-motoristas/{$saldo_motorista.id}/abrir-pdf" target="_blank" class="btn btn-success btn-block"> Abrir Arquivo</a>
+              {/if}
+            </div>
+            
+          </div>
+          <!-- /.box-body -->
+          <div class="card-footer">
+            {if="$saldo_motorista.status==1"}
+            <button type="submit" class="btn btn-primary btn-block">Validar Carregamento </button>
+            <a href="http://159.89.52.185:8080/saldo-motoristas/{$saldo_motorista.id}/delete" onclick="return confirm('Deseja realmente anular este registro?')" class="btn btn-danger btn-block"><i class="fa fa-trash"></i> Anular</a>
+            {/if}
+          </div>
+        </form>
+      </div>
+  	</div>
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

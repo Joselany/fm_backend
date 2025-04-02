@@ -1,0 +1,160 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+<!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Configurações</h1>
+          </div><!-- /.col -->
+          
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+<!-- Main content -->
+<div class="content">
+      <div class="container-fluid">
+        <div class="row">
+  	<div class="col-md-12">
+  		<div class="card">
+        
+
+          <form role="form" action="http://159.89.52.185:8080/config/paragem/{$configparagem.id}" method="post" enctype="multipart/form-data">
+          <div class="box-body"><br><br>
+            <h3>Paragens</h3>
+            <div class="row form-group">
+              
+             <div class="col-md-6">
+              <label for="tempo_limite">Tempo limite (Segundos)</label>
+              <input type="text" class="form-control" id="tempo_limite" name="tempo_limite" maxlength="60" value="{$configparagem.tempo_limite}" required="required">
+             </div>
+             <div class="col-md-6">
+              <label for="taxa">Taxa fixa ()</label>
+              <input type="text" class="form-control" id="taxa" name="taxa" maxlength="120" value="{$configparagem.taxa}" required="required">
+             </div>
+            </div>
+             
+          <!-- /.box-body -->
+           <div class="col-md-12">
+            <button type="submit" class="btn btn-primary btn-block">Salvar</button>
+           </div>
+          </div>
+          </form>
+
+          <form role="form" action="http://159.89.52.185:8080/config/pesquisa/{$pesquisa.id}" method="post" enctype="multipart/form-data">
+          <div class="box-body"><br><br>
+            <h3>Pesquisa</h3>
+            <div class="row form-group">
+              
+             <div class="col-md-6">
+              <label for="tempo">Tempo(minutos)</label>
+              <input type="text" class="form-control" id="tempo" name="tempo" maxlength="60" value="{$pesquisa.tempo}" required="required">
+             </div>
+             <div class="col-md-6">
+              <label for="raio">Raio(Km)</label>
+              <input type="text" class="form-control" id="raio" name="raio" maxlength="120" value="{$pesquisa.raio}" required="required">
+             </div>
+            </div>
+             
+          <!-- /.box-body -->
+           <div class="col-md-12">
+            <button type="submit" class="btn btn-primary btn-block">Salvar</button>
+           </div>
+          </div>
+          </form>
+
+            <div class="card-body p-1 m-0">
+              
+               <form action="http://159.89.52.185:8080/config/fpagamentos/new" method="post">
+                   <div class="col-md-12"><br><br>
+                          <h4>Formas de Pagamento</h4>
+                          <div class="row">
+                            <div class="col-md-6">
+                             <label for="descricao">Descrição</label>
+                             <select name="descricao" class="form-control">
+                               <option value="Cash">Cash</option>
+                               <option value="Carteira">Carteira</option>
+                               <option value="TPA">TPA</option>
+                               <option value="Tranferencia">Tranferencia</option>
+                             </select>
+                            </div>
+                            <div class="col-md-6">
+                             <label for="contact">&nbsp;</label>
+                             <button type="submit" class="btn btn-primary btn-block">Adicionar</button>
+                            </div>
+                      
+                          </div>
+                          <div class="row">
+                          	 <table class="table table-hover dataTable">
+                				<thead>
+                  					<tr>
+                    					
+                    					<th>Descrição</th>
+                    					<th>Contacto</th>
+                                        <th>&nbsp;</th>
+                                   </tr>
+                               </thead>
+                               <tbody>
+                                  {loop="$formaspagamento"}
+                  					<tr>
+                    					<td>{$value.descricao}</td>
+                                        <td><a href="http://159.89.52.185:8080/config/fpagamentos/{$value.id}/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>
+                                        </td>
+                                   </tr>
+                                  {/loop}
+                               </tbody>
+                             </table>
+                          </div>
+                   </div>
+                  </form>
+                   <form action="http://159.89.52.185:8080/config/moeda/new" method="post">
+                   <div class="col-md-12"><br><br>
+                          <h4>Moeda</h4>
+                          <div class="row">
+                            <div class="col-md-6">
+                             <label for="moeda">moeda</label>
+                             <input type="text" class="form-control" id="moeda" name="moeda" maxlength="60" required="required">
+                            </div>
+                            <div class="col-md-6">
+                             <label for="contact">&nbsp;</label>
+                             <button type="submit" class="btn btn-primary btn-block">Adicionar</button>
+                            </div>
+                      
+                          </div>
+                          <div class="row">
+                          	 <table class="table table-hover dataTable">
+                				<thead>
+                  					<tr>
+                    					<th>Moeda</th>
+                                        <th>&nbsp;</th>
+                                   </tr>
+                               </thead>
+                               <tbody>
+                                  {loop="$moeda"}
+                  					<tr>
+                    					<td>{$value.moeda}</td>
+                                        <td><a href="http://159.89.52.185:8080/config/moeda/{$value.id}/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>
+                                        </td>
+                                   </tr>
+                                  {/loop}
+                               </tbody>
+                             </table>
+                          </div>
+                   </div>
+                  </form>
+                  
+                 
+            </div>
+          </div>
+        </div>
+            <!-- /.box-body -->
+          
+          </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

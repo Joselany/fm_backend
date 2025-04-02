@@ -1,0 +1,49 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    Email Marketing
+  </h1>
+</section>
+
+<!-- Main content -->
+<div class="content">
+      <div class="container-fluid">
+        <div class="row">
+    <div class="col-md-12">
+      <form role="form" action="http://159.89.52.185:8080/email-marketing/new" method="post">
+      <div class="card">
+        <div class="card-header with-border">
+          <a href="http://159.89.52.185:8080/email-marketing/expot-email">Exportar emails</a>
+          <label class="card-title"> Destinatários: </label> &nbsp
+          <span> Motoristas </span> <input type="checkbox" name="motorista" value="1"> &nbsp
+          <span> Passageiros  </span><input type="checkbox" name="passageiro" value="1"> &nbsp
+          <span> Motoristas Pendentes </span> <input type="checkbox" name="motoristaoff" value="1"> &nbsp
+          <span> Passageiros Pendentes </span><input type="checkbox" name="passageirooff" value="1"> &nbsp
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <!-- /.box-header -->
+        <!-- form start -->
+        
+          <div class="card-body">
+            
+            <div class="form-group">
+               <label for="note">Mensagem</label>
+               <textarea id="compose-textarea" class="form-control" name="note"  style="height:200px" required="required"></textarea>
+            </div>
+          </div>
+          <!-- /.box-body -->
+          <div class="card-footer">
+            <button type="submit" class="btn btn-primary btn-block">Enviar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+</div>
+<!-- /.content-wrapper -->

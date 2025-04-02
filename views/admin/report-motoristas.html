@@ -1,0 +1,88 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+<!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-12">
+            <h1 class="m-0 text-dark">Relatório de Viagens por motoqueiro </h1>
+            <h5>Nome: {$nome_motorista}</h5>
+            <span style="float: left; font-size: 18px;"><strong>Valor total:</strong> {$valor_total} AKZ</span>
+            <span style="float: right; font-size: 18px;"><strong>Valor total da comissão:</strong> {$comissao} AKZ</span>
+          </div><!-- /.col -->
+          
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+<!-- Main content -->
+<div class="content">
+      <div class="container-fluid">
+        <div class="row">
+  	<div class="col-md-12">
+  		<div class="card">
+            
+            <div class="card-header">
+              <form action="http://159.89.52.185:8080/config/report-motoristas/{$empresa.id}" method="get">
+                <label>DE:</label> 
+                <input type="date" name="de" value="{$de}"> 
+                <label>ATÉ:</label> 
+                <input type="date" name="ate" value="{$ate}">
+                <select name='num_motorista'>
+                  <option value="{$num_motorista}">{$nome_motorista}</option>
+                  {loop="$motoristas"}
+                    <option value="{$value.id}">{$value.nome} {$value.apelido}</option> 
+                  {/loop} 
+                </select>
+                <button class="btn btn-md btn-default"><i class="fas fa-search"></i></button>
+              </form>
+            </div>
+
+            <div class="card-body p-0">
+              <table class="table table-bordered table-hover dataTable">
+                <thead>
+                  <tr>
+                    <th style="width: 10px">#</th>
+                    <th>Descrição</th>
+                    <th>Passageiro</th>
+                    <th>Motoqueiro</th>
+                    <th>Inicio</th>
+                    <th>Término</th>
+                    <th>Valor</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {loop="$viagens"}
+                  <tr align="left">
+                    <td>{$value.id}</td>
+                    <td>{$value.descricao}</td>
+                    <td>{$value.nome_passageiro}</td>
+                    <td>{$value.nome_motorista}</td>
+                    <td>{$value.inicio_viagem}</td>
+                    <td>{$value.termino_viagem}</td>
+                    <td>{$value.valor}</td>
+                    
+                  </tr>
+                  {/loop}
+                </tbody>
+              </table>
+            </div>
+            <!-- /.box-body -->
+            <div class="card-footer clearfix">
+              Número de registo: {$num_registos}
+              <ul class="pagination pagination-sm m-0 float-right">
+                {loop="$pages"}
+                <li><a class="page-link" href="{$value.href}">{$value.text}</a></li>
+                {/loop}
+              </ul>
+            </div>
+          </div>
+  	</div>
+  </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

@@ -1,0 +1,136 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+<!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-12">
+            <h3>Operações</h3>
+            <strong class="m-0 text-dark">Foram encontrados {$total_viagens} registo(s)...</strong>
+            <span style="float: left; font-size: 18px;"><strong> </strong></span>
+          </div><!-- /.col -->
+          <div class="col-sm-12 text-right">
+            <a href="" onclick="window.print(); return false;"><span class="fa fa-print"></span> Imprimir</a>
+            
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+<!-- Main content -->
+<div class="content">
+      <div class="container-fluid">
+        <div class="row">
+  	<div class="col-md-12">
+  		<div class="card">
+            
+            <div class="card-header">
+              <form action="http://159.89.52.185:8080/operacoes/viagens" method="get">
+                <div class="row"> 
+                <div class="col-md-2 m-0">
+                  <label>De:</label> 
+                  <input type="date" name="de" value="{$de}" class="form-control" style="display: inline; width: 80%;">
+                </div>
+                <div class="col-md-2 m-0"> 
+                  <label>à:</label> 
+                  <input type="date" name="ate" value="{$ate}" class="form-control" style="display: inline; width: 80%;">
+                </div>
+                <div class="col-md-7 p-0 m-0">
+                  <select name="regiao" class="form-control" style="display: inline; width: 30%;">
+                        {if="$regiao!=''"}<option value="{$regiao}"> {$nome_regiao}</option>{else}<option value="">Todas regiões</option>{/if}
+                        <option value="">Todas regiões</option>
+                        {loop="$regioes"}
+                        <option value="{$value.id}">{$value.provincia}</option>
+                        {/loop}
+                    </select>
+                  <select name='status_pedido' class="form-control" style="display: inline; width: 30%;">
+                      <option value="{$status_pedido}">
+                         {if="$status_pedido==-1"}Todos estados{/if}
+                         {if="$status_pedido==0"}Cancelada{/if}
+                         {if="$status_pedido==4"}Em curso{/if}
+                         {if="$status_pedido==5"}Parada{/if}
+                         {if="$status_pedido==6"}Retomada{/if}
+                         {if="$status_pedido==7"}A efetuar pagamento{/if}
+                         {if="$status_pedido==8"}Realizada{/if}</option>
+                      <option value="-1">Todos estados</option>
+                      <option value="0">Cancelada</option>
+                      <option value="4">Em curso</option>
+                      <option value="5">Parada</option> 
+                      <option value="6">Retomada</option> 
+                      <option value="7">A efetuar pagamento</option> 
+                      <option value="8">Realizada</option>  
+                  </select>
+                  <select name='num_motorista' class="form-control" style="display: inline; width: 38%;">>
+                    <option value="-1">Todos motoristas</option>
+                    {loop="$motorista"}
+                      <option value="{$value.id}">{$value.nome} {$value.apelido}</option> 
+                    {/loop} 
+                  </select>
+                </div>
+                <div class="col-md-1 p-0 m-0">
+                  <button class="btn btn-md btn-default btn-block"><i class="fas fa-filter"></i></button>
+                </div>
+                </div>
+              </form>
+            </div>
+
+            <div class="card-body p-1">
+              <table class="table table-bordered table-hover dataTable">
+                <thead>
+                  <tr>
+                    <th style="width: 10px">#</th>
+                    <th>Origem</th>
+                    <th>Destino</th>
+                    <th>Região</th>
+                    <th>Motoqueiro</th>
+                    <th>Passageiro</th>
+                    <th>{if="$status_pedido==8"} Valor {/if} {if="$status_pedido==0"} Cancelado por {/if}</th>
+                    <th>Inicio/Termino</th>
+                    <th>Estado</th>
+                    <!--<th> </th>-->
+                  </tr>
+                </thead>
+                <tbody>
+                  {loop="$viagens"}
+                  <tr>
+                    <td> {$value.id}</td>
+                    <td> {$value.desc_origem}</td>
+                    <td> {$value.desc_destino}</td>
+                    <td> {$value.regiao}</td>
+                    <td> {$value.nome_motorista}</td>
+                    <td> {$value.nome_passageiro}</td>
+                    <td> {if="$value.status_pedido==8"}<span class="money"> {$value.valor} </span>{/if} {if="$value.status_pedido==0"} {$value.cancelado_por} {/if}</td>
+                    <td> {$value.inicio_viagem} {if="$value.status_pedido==8"} / {$value.termino_viagem}{/if}</td>
+                    <td> {if="$value.status_pedido==0"}Cancelada{/if}
+                         {if="$value.status_pedido==1"}A chamar{/if}
+                         {if="$value.status_pedido==2"}Atendida{/if}
+                         {if="$value.status_pedido==3"}Chegou ao local de recolha{/if}
+                         {if="$value.status_pedido==4"}Em curso{/if}
+                         {if="$value.status_pedido==5"}Parada{/if}
+                         {if="$value.status_pedido==6"}Retomada{/if}
+                         {if="$value.status_pedido==7"}A efetuar pagamento{/if}
+                         {if="$value.status_pedido==8"}Realizada{/if}
+                    </td>
+                     <!--<th> </th>-->
+                  </tr>
+                  {/loop}
+                </tbody>
+              </table>
+            </div>
+            <!-- /.box-body -->
+            <div class="card-footer clearfix">
+              
+              <ul class="pagination pagination-sm m-0 float-right">
+                
+              </ul>
+            </div>
+          </div>
+  	</div>
+  </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

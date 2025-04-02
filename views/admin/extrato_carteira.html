@@ -1,0 +1,100 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+<!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Extrato da carteira de {$nome_passageiro}</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-12 text-right">
+            <a href="" onclick="window.print(); return false;"><span class="fa fa-print"></span> Imprimir</a>
+            
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+<!-- Main content -->
+<div class="content">
+      <div class="container-fluid">
+        <div class="row">
+  	<div class="col-md-12">
+  		<div class="card">
+            
+            <div class="card-header">
+              <form action="http://159.89.52.185:8080/carteiras/extrato" method="get">
+                <div class="row"> 
+                <div class="col-md-3">
+                  <label>De:</label> 
+                  <input type="date" name="de" value="{$de}" class="form-control" style="width: 70%; display: inline;">
+                </div>
+                <div class="col-md-3"> 
+                  <label> à: </label> 
+                  <input type="date" name="ate" value="{$ate}" class="form-control" style="width: 70%; display: inline;">
+                </div>
+                <div class="col-md-2">
+                  <select name='operacao' class="form-control">
+                      <option value="{$operacao}">{$operacao}</option>  
+                      <option value="Débito">Débito</option>
+                      <option value="Crédito">Crédito</option>  
+                  </select>
+                </div>
+                <div class="col-md-3">
+                  <select name='num_passageiro' class="form-control">
+                    <option value="{$num_passageiro}">{$nome_passageiro}</option>
+                    <option value="-1">Todos passageiros</option>
+                    {loop="$passageiro"}
+                      <option value="{$value.id}">{$value.nome} {$value.apelido}</option> 
+                    {/loop} 
+                  </select>
+                </div>
+                <div class="col-md-1">
+                  <button class="btn btn-md btn-default"><i class="fas fa-filter"></i></button>
+                </div>
+                </div>
+              </form>
+            </div>
+
+            <div class="card-body p-0">
+              <table class="table table-bordered table-hover dataTable">
+                <thead>
+                  <tr>
+                    <th> # </th>
+                    <th> Drescrição </th>
+                    <th> Data </th>
+                    <th> Forma de pagamento </th>
+                    <th> Valor </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {loop="$carteira"}
+                  <tr>
+                    <td>{$value.id}</td>
+                    <td>{if="$operacao=='Débito'"}Pagamento com a Carteira{/if}{if="$operacao=='Crédito'"}Carregamento de Carteira{/if}</td>
+                    <td>{if="$operacao=='Débito'"}{$value.data_pagamento}{/if}{if="$operacao=='Crédito'"}{$value.data_carregamento}{/if}</td>
+                    <td>{if="$operacao=='Débito'"}Pagamento com a Carteira{/if}{if="$operacao=='Crédito'"}{$value.metodo_carregamento}{/if}</td>
+                    <td>{$value.valor}</td>
+                  </tr>
+                  {/loop}
+                </tbody>
+              </table>
+            </div>
+            <div class="card-footer clearfix">
+              <ul class="pagination pagination-sm m-0 float-right">
+                {loop="$pages"}
+                <li><a class="page-link" href="{$value.href}">{$value.text}</a></li>
+                {/loop}
+              </ul>
+            </div>
+            <!-- /.box-body -->
+          </div>
+  	</div>
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+</div></div>
+<!-- /.content-wrapper -->

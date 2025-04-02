@@ -1,0 +1,255 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+<!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark"> Motoqueiro - {$perfil_motorista.nome} {if="$perfil_motorista.status_cadastro==0"}
+                      <a href="http://159.89.52.185:8080/motoristas/{$perfil_motorista.id}/activar" onclick="return confirm('Deseja realmente activar este motorista?')" class="btn btn-success btn-md"><i class=""></i> Activar</a>
+                      {/if}
+                      {if="$perfil_motorista.status_cadastro==1"}
+                      <a href="http://159.89.52.185:8080/motoristas/{$perfil_motorista.id}/desactivar" onclick="return confirm('Deseja realmente desactivar este motorista?')" class="btn btn-danger btn-md"><i class=""></i> Desactivar</a>
+                      {/if} </h1>
+          </div><!-- /.col -->
+          
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+<!-- Main content -->
+<div class="content">
+  <div class="container-fluid">
+
+  <div class="row">
+  	<div class="col-md-12">
+
+  		<div class="card">
+        <div class="card-header with-border">
+          <h3 class="card-title"> Perfil do motorista</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+   
+        <div class="card-body">
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label>Nome</label>
+              <input type="text" class="form-control" readonly="readonly" value="{$perfil_motorista.nome}">
+            </div>
+            <div class="form-group col-md-6">
+              <label>Apelido</label>
+              <input type="text" class="form-control" readonly="readonly" value="{$perfil_motorista.apelido}">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label>Email</label>
+              <input type="email" class="form-control" readonly="readonly"  value="{$perfil_motorista.email}">
+            </div>
+            <div class="form-group col-md-6">
+              <label>Telefone</label>
+              <input type="text" class="form-control" readonly="readonly"  value="({$perfil_motorista.cod_pais}) {$perfil_motorista.telefone}">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label>Estado do Cadastro</label>
+              <input type="text" class="form-control" readonly="readonly"  value="{if="$perfil_motorista.status_cadastro==0"}Inactivo{/if} {if="$perfil_motorista.status_cadastro==1"}Activo{/if}">
+            </div>
+            <div class="form-group col-md-6">
+              <label >Data do Cadastro</label>
+              <input type="text" class="form-control" readonly="readonly"  value=" {$perfil_motorista.data_cadastro}">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label >Data activacao</label>
+              <input type="text" class="form-control" maxlength="60" readonly="readonly"  value="{$perfil_motorista.data_activacao}">
+            </div>
+            <div class="form-group col-md-6">
+              <label >Activado por</label>
+              <input type="text" class="form-control" readonly="readonly"  value=" {$perfil_motorista.activado_por}">
+            </div>
+          </div>
+        </div>
+          <!-- /.box-body -->
+      </div><!--Card -->
+  	</div>
+  </div><!-- /.row -->
+
+  <div class="row">
+    <div class="col-md-12">
+
+      <div class="card">
+        <div class="card-header with-border">
+          <h3 class="card-title"> Informações do motorista</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+   
+        <div class="card-body">
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label >Província</label>
+              {if="$empresa.tipo!='Geral'"}
+              <input type="text" class="form-control" readonly="readonly" value="{$info_motorista.provincia}">
+              {/if}
+              {if="$empresa.tipo=='Geral'"}
+               <form action="http://159.89.52.185:8080/infomotoristas/{$perfil_motorista.id}" method="post">
+                  <div class="row">
+                    <div class="col-md-7">
+                      <select class="form-control" name="provincia">
+                        <option value="{$info_motorista.provincia}">{$info_motorista.provincia}</option>
+                        {loop="$lista_empresas"}
+                        <option value="{$value.provincia}">{$value.provincia}</option>
+                        {/loop}
+                      </select>
+                    </div>
+                    <div class="col-md-5">
+                      <input type="submit" value="alterar" class="form-control">
+                    </div>
+                  </div>
+               </form>
+              {/if}
+            </div>
+            <div class="form-group col-md-6">
+              <label >Cidade</label>
+              <input type="text" class="form-control" readonly="readonly" value="{$info_motorista.cidade}">
+            </div>
+            <div class="form-group col-md-12">
+              <label >Endereço</label>
+              <input type="text" class="form-control" readonly="readonly" value="{$info_motorista.endereco}">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label>Marca da Motorizada</label>
+              <input type="text" class="form-control" readonly="readonly"  value="{$info_motorista.marca_viatura}">
+            </div>
+            <div class="form-group col-md-6">
+              <label>Modelo da Motorizada</label>
+              <input type="text" class="form-control" readonly="readonly"  value="{$info_motorista.modelo_viatura}">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label >Matricula</label>
+              <input type="text" class="form-control" readonly="readonly"  value="{$info_motorista.matricula}">
+            </div>
+            <div class="form-group col-md-6">
+              <label >Cor</label>
+              <input type="text" class="form-control" readonly="readonly"  value=" {$info_motorista.cor}">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label >Categoria</label>
+              <input type="text" class="form-control" readonly="readonly"  value="{$info_motorista.categoria}">
+            </div>
+            <div class="form-group col-md-6">
+              <label >Livrete</label>
+              <input type="text" class="form-control" readonly="readonly"  value=" {$info_motorista.livrete}">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label>Bilhete de Identidade</label>
+              <input type="text" class="form-control" readonly="readonly"  value="{$info_motorista.bi}">
+            </div>
+            <div class="form-group col-md-6">
+              <label >Data de Validade (B.I)</label>
+              <input type="text" class="form-control" readonly="readonly"  value=" {$info_motorista.validade_bi}">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-12">
+              <label >Titulo de Propriedade</label>
+              <input type="text" class="form-control" readonly="readonly"  value="{$info_motorista.titulo_propriedade}">
+            </div>
+            <div class="form-group col-md-6">
+              <label >Carta de Condução</label>
+              <input type="text" class="form-control" readonly="readonly"  value=" {$info_motorista.carta_conducao}">
+            </div>
+            <div class="form-group col-md-6">
+              <label >Data de Validade (Carta de Condução)</label>
+              <input type="text" class="form-control" readonly="readonly"  value=" {$info_motorista.validade_carta_conducao}">
+            </div>
+          </div>
+        </div>
+          <!-- /.box-body -->
+      </div><!--Card -->
+    </div>
+  </div><!-- /.row -->
+
+  <div class="row">
+    <div class="col-md-12">
+
+      <div class="card">
+        <div class="card-header with-border">
+          <h3 class="card-title"> Documentos do motorista (BI,Registo Criminal, Livrete, Título e Carta)</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+   
+        <div class="card-body">         
+          <div class="col-12 col-sm-12">
+              
+              <div class="col-12">
+                {if="$docs_motorista.bi==''"}
+                <img src="http://159.89.52.185:8080/img/sem imagem.jpg" class="product-image" alt="Foto Não Carregada" title="B.I">
+                {else}
+                <img src="http://159.89.52.185:8080/{$docs_motorista.bi}" class="product-image" alt="B.I" title="B.I">
+                {/if}
+              </div>
+              <div class="col-12 product-image-thumbs">
+                
+                <div class="product-image-thumb active">
+                  {if="$docs_motorista.bi==''"}
+                  <img src="http://159.89.52.185:8080/img/sem imagem.jpg"  alt="Foto Não Carregada" title="B.I">
+                  {else}
+                  <img src="http://159.89.52.185:8080/{$docs_motorista.bi}"  alt="B.I" title="B.I">
+                  {/if}
+                </div>
+                <div class="product-image-thumb">
+                  {if="$docs_motorista.registo_criminal==''"}
+                  <img src="http://159.89.52.185:8080/img/sem imagem.jpg" alt="Foto Não Carregada" title="Registo Criminal">
+                  {else}
+                  <img src="http://159.89.52.185:8080/{$docs_motorista.registo_criminal}" alt="Registo Criminal" title="Registo Criminal">
+                  {/if}
+                </div>
+                <div class="product-image-thumb">
+                  {if="$docs_motorista.livrete==''"}
+                  <img src="http://159.89.52.185:8080/img/sem imagem.jpg" alt="Foto Não Carregada" title="Livrete">
+                  {else}
+                  <img src="http://159.89.52.185:8080/{$docs_motorista.livrete}" alt="Livrete" title="Livrete">
+                  {/if}
+                </div>
+                <div class="product-image-thumb">
+                  {if="$docs_motorista.titulo_propriedade==''"}
+                  <img src="http://159.89.52.185:8080/img/sem imagem.jpg" alt="Foto Não Carregada" title="Título propriedade">
+                  {else}
+                  <img src="http://159.89.52.185:8080/{$docs_motorista.titulo_propriedade}" alt="Título" title="Título propriedade">
+                  {/if}
+                </div>
+                <div class="product-image-thumb">
+                  {if="$docs_motorista.carta_conducao==''"}
+                  <img src="http://159.89.52.185:8080/img/sem imagem.jpg" alt="Foto Não Carregada" title="Carta de Condução">
+                  {else}
+                  <img src="http://159.89.52.185:8080/{$docs_motorista.carta_conducao}" alt="Carta" title="Carta de Condução">
+                  {/if}
+                </div>
+               
+              </div>
+          </div>
+        </div>
+          <!-- /.box-body -->
+      </div><!--Card -->
+    </div>
+  </div><!-- /.row -->
+
+  </div><!-- /.container-fluid -->
+  </div>
+</div>
+<!-- /.content-wrapper -->

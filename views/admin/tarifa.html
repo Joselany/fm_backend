@@ -1,0 +1,68 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+<!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Tarifas </h1>
+          </div><!-- /.col -->
+          
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+<!-- Main content -->
+<div class="content">
+      <div class="container-fluid">
+        <div class="row">
+  	<div class="col-md-12">
+  		<div class="card">
+            
+            <div class="card-header">
+              <a href="http://159.89.52.185:8080/tarifas/new" class="btn btn-primary">Cadastrar Nova Tarifa</a>
+            </div>
+
+            <div class="card-body p-0">
+              <table class="table table-bordered table-hover dataTable">
+                <thead>
+                  <tr>
+
+                    <th>Tipo da Motorizada</th>
+                    <th>Tarifa base</th>
+                    <th>Tarifa Km</th>
+                    <th>Inicio</th>
+                    <th>Fim</th>
+                    <th>Região</th>
+                    <th style="width: 140px">&nbsp;</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {loop="$tarifa"}
+                  <tr>
+                    <td>{$value.tipo_viatura}</td>
+                    <td>{$value.tarifa_base}</td>
+                    <td>{$value.tarifa_km}</td>
+                    <td>{$value.hora_inicial}</td>
+                    <td>{$value.hora_final}</td>
+                    <td>{$value.nome_empresa}</td>
+                    <td>
+                      <a href="http://159.89.52.185:8080/tarifas/{$value.id}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</a>
+                      <a href="http://159.89.52.185:8080/tarifas/{$value.id}/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>
+                    </td>
+                  </tr>
+                  {/loop}
+                </tbody>
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+  	</div>
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

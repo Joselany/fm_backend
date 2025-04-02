@@ -1,0 +1,81 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+<!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Tarifas </h1>
+          </div><!-- /.col -->
+          
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+<!-- Main content -->
+<div class="content">
+      <div class="container-fluid">
+        <div class="row">
+  	<div class="col-md-12">
+  		<div class="card">
+        <div class="card-header with-border">
+          <h3 class="card-title">Novo Registo</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form role="form" action="http://159.89.52.185:8080/tarifas/new" method="post">
+          <div class="card-body">
+            <div class="form-group">
+              <label for="category">Tipo da Motorizada</label>
+              <select name="tipo_viatura" class="form-control">
+              {loop="$viaturas"}
+                  <option value="{$value.tipo}">{$value.tipo}</option>
+              {/loop}
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="tarifa_base">Tarifa base</label>
+              <input type="number" class="form-control" id="tarifa_base" name="tarifa_base" maxlength="30">
+            </div>
+            <div class="form-group">
+              <label for="tarifa_km">Tarifa Km</label>
+              <input type="number" class="form-control" id="tarifa_km" name="tarifa_km" maxlength="30">
+            </div>
+            <div class="form-group">
+              <label for="hora_inicial">Hora inicial</label>
+              <input type="time" class="form-control" id="hora_inicial" name="hora_inicial" maxlength="30">
+            </div>
+            <div class="form-group">
+              <label for="hora_final">Hora final</label>
+              <input type="time" class="form-control" id="hora_final" name="hora_final" maxlength="30">
+            </div>
+            <div class="form-group">
+              <label for="inicio_cobranca">Inicio cobrança</label>
+              <input type="number" class="form-control" id="inicio_cobranca" name="inicio_cobranca" maxlength="30">
+            </div>
+            {if="$empresa.tipo=='Geral'"}
+            <div class="form-group">
+              <label for="empresa">Região</label>
+              <select type="text" class="form-control" id="empresa" name="empresa">
+                {loop="$lista_empresas"}
+                <option value="{$value.id}">{$value.nome}</option>
+                {/loop}
+              </select>
+            </div>
+            {/if}
+          </div>
+          <!-- /.box-body -->
+          <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+          </div>
+        </form>
+      </div>
+  	</div>
+  </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

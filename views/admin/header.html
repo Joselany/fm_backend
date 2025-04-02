@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>FASTMOTO | V 0.1</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="http://159.89.52.185:8080/assets/config/plugins/fontawesome-free/css/all.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="http://159.89.52.185:8080/assets/config/dist/css/adminlte.min.css">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <link rel="icon" href="http://159.89.52.185:8080/img/logo_fastmoto.png" type="image/x-icon">
+  <!-- jQuery -->
+  <script src="http://159.89.52.185:8080/assets/config/plugins/jquery/jquery.min.js"></script>
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      </li>
+      
+    </ul> 
+  </nav>
+  <!-- /.navbar -->
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-light-primary elevation-1">
+    <!-- Brand Logo -->
+    <a href="http://159.89.52.185:8080/" class="brand-link">
+      <img src="http://159.89.52.185:8080/img/Logo.jpeg" class="brand-image img-circle elevation-3"
+           style="opacity: .8">
+      <span class="brand-text font-weight-light">{$empresa.nome}</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="http://159.89.52.185:8080/{$usuario.foto}" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="#" class="d-block">{$usuario.nome}</a>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item">
+            <a href="http://159.89.52.185:8080/" class="nav-link">
+              <i class="nav-icon fas fa-home"></i>
+              <p>
+                Home
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="http://159.89.52.185:8080/home-mapa" class="nav-link">
+              <i class="nav-icon fas fa-map"></i>
+              <p>
+                Mapa
+              </p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview menu-closed">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-motorcycle"></i>
+              <p>
+                Motoqueiros
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="http://159.89.52.185:8080/motoristas?filtro=Activos" class="nav-link">
+                  <i class="nav-icon fas fa-thumbs-up"></i>
+                  <p>Activos</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="http://159.89.52.185:8080/motoristas?filtro=Candidaturas" class="nav-link">
+                  <i class="nav-icon fas fa-edit"></i>
+                  <p>Candidaturas</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="http://159.89.52.185:8080/motoristas?filtro=Rejeitados" class="nav-link">
+                  <i class="nav-icon fas fa-trash"></i>
+                  <p>Rejeitados</p>
+                </a>
+              </li>
+              
+            </ul>
+          </li>
+
+          <li class="nav-item has-treeview menu-closed">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-user-cog"></i>
+              <p>
+                Passageiros
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="http://159.89.52.185:8080/passageiros" class="nav-link">
+                  <i class="nav-icon fas fa-thumbs-up"></i>
+                  <p>Activos</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="http://159.89.52.185:8080/passageiros?filtro=Banidos" class="nav-link">
+                  <i class="nav-icon fas fa-trash"></i>
+                  <p>Banidos</p>
+                </a>
+              </li>
+              
+            </ul>
+          </li>
+
+          <li class="nav-item has-treeview menu-closed">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Operações
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="http://159.89.52.185:8080/operacoes/viagens?status_pedido=4" class="nav-link">
+                  <i class="nav-icon fas fas fa-traffic-light"></i>
+                  <p>Viagens em Curso</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="http://159.89.52.185:8080/operacoes/viagens?status_pedido=8" class="nav-link">
+                  <i class="nav-icon fas fa-check-double"></i>
+                  <p>Viagens Realizadas</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="http://159.89.52.185:8080/operacoes/viagens?status_pedido=0" class="nav-link">
+                  <i class="nav-icon fas fa-ban"></i>
+                  <p>Viagens Canceladas</p>
+                </a>
+              </li>
+              
+            </ul>
+          </li>
+
+          <li class="nav-item has-treeview menu-closed">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-money-check"></i>
+              <p>
+                Financeiro
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              
+              <li class="nav-item">
+                <a href="http://159.89.52.185:8080/recebimento-comissao" class="nav-link">
+                  <i class="nav-icon fas fa-coins"></i>
+                  <p>Recebimento de Comissões</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="http://159.89.52.185:8080/saldo-motoristas" class="nav-link">
+                  <i class="nav-icon fas fa-wallet"></i>
+                  <p>Saldo dos Motoqueiros</p>
+                </a>
+              </li>
+              <!--
+              <li class="nav-item">
+                <a href="http://159.89.52.185:8080/operacoes/viagens?status_pedido=0" class="nav-link">
+                  <i class="nav-icon fas fa-hand-holding-usd"></i>
+                  <p>Contas a Pagar</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="http://159.89.52.185:8080/operacoes/viagens?status_pedido=0" class="nav-link">
+                  <i class="nav-icon fas fa-hand-holding"></i>
+                  <p>Contas a Receber</p>
+                </a>
+              </li>
+              -->
+            </ul>
+          </li>
+
+          <li class="nav-item has-treeview menu-closed">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-chart-bar"></i>
+              <p>
+                Relatórios
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="http://159.89.52.185:8080/report/viagens" class="nav-link">
+                  <i class="nav-icon fas fas fa-traffic-light"></i>
+                  <p>Viagens</p>
+                </a>
+              </li>
+              
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="http://159.89.52.185:8080/report/produtividade" class="nav-link">
+                  <i class="nav-icon fas fas fa-traffic-light"></i>
+                  <p>Produtividade</p>
+                </a>
+              </li>
+              
+            </ul>
+          </li>
+
+          <li class="nav-item has-treeview menu-closed">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-hands-helping"></i>
+              <p>
+                Suporte
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="http://159.89.52.185:8080/mensagem" class="nav-link">
+                  <i class="nav-icon fas fa-inbox"></i>
+                  <p>
+                    Caixa de entrada
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="http://159.89.52.185:8080/sms-marketing" class="nav-link">
+                  <i class="nav-icon fas fa-comments"></i>
+                  <p>
+                    SMS marketing
+                  </p>
+                </a>
+              </li>
+              <!--
+              <li class="nav-item">
+                <a href="http://159.89.52.185:8080/email-marketing" class="nav-link">
+                  <i class="nav-icon fas fa-envelope"></i>
+                  <p>
+                    Email marketing
+                  </p>
+                </a>
+              </li>
+              -->
+            </ul>
+          </li>
+          
+
+          <li class="nav-item has-treeview menu-closed">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-cogs"></i>
+              <p>
+                Configurações
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              {if="$empresa.tipo=='Geral'"}
+              <li class="nav-item">
+                <a href="http://159.89.52.185:8080/filiais" class="nav-link">
+                  <i class="nav-icon fas fa-building"></i>
+                  <p>Filiais</p>
+                </a>
+              </li>
+              {/if}
+              {if="$empresa.tipo=='Geral'"}
+              <li class="nav-item">
+                <a href="http://159.89.52.185:8080/viaturas" class="nav-link">
+                  <i class="nav-icon fas fa-motorcycle"></i>
+                  <p>Motorizadas</p>
+                </a>
+              </li>
+              {/if}
+              <li class="nav-item">
+                <a href="http://159.89.52.185:8080/tarifas" class="nav-link">
+                  <i class="nav-icon fas fa-coins"></i>
+                  <p>Tarifas</p>
+                </a>
+              </li>
+              {if="$empresa.tipo=='Geral'"}
+              <li class="nav-item">
+                <a href="http://159.89.52.185:8080/comissao" class="nav-link">
+                  <i class="nav-icon fas fa-percent"></i>
+                  <p>Comissões</p>
+                </a>
+              </li>
+              {/if}
+              <li class="nav-item">
+                <a href="http://159.89.52.185:8080/cupom" class="nav-link">
+                  <i class="nav-icon fas fa-percent"></i>
+                  <p>Cupons</p>
+                </a>
+              </li>
+              {if="$empresa.tipo=='Geral'"}
+              <li class="nav-item">
+                <a href="http://159.89.52.185:8080/config" class="nav-link">
+                  <i class="nav-icon fas fa-stop"></i>
+                  <p>Paragens</p>
+                </a>
+              </li>
+              {/if}
+              {if="$empresa.tipo=='Geral'"}
+              <li class="nav-item">
+                <a href="http://159.89.52.185:8080/config" class="nav-link">
+                  <i class="nav-icon fas fa-credit-card"></i>
+                  <p>Fomas de Pagamento</p>
+                </a>
+              </li>
+              {/if}
+              {if="$empresa.tipo=='Geral'"}
+              <li class="nav-item">
+                <a href="http://159.89.52.185:8080/config" class="nav-link">
+                  <i class="nav-icon fas fa-dollar-sign"></i>
+                  <p>Moeda</p>
+                </a>
+              </li>
+              {/if}
+            </ul>
+          </li>
+          
+
+          <li class="nav-item">
+            <a href="http://159.89.52.185:8080/users" class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
+              <p>
+                Operadores
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="http://159.89.52.185:8080/users/change-password" class="nav-link">
+              <i class="nav-icon fas fa-key"></i>
+              <p>
+                Senha
+              </p>
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a href="http://159.89.52.185:8080/logout" class="nav-link">
+              <i class="nav-icon fas fa-power-off"></i>
+              <p>
+                Sair
+              </p>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+  

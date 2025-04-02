@@ -1,0 +1,146 @@
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <div class="content">
+      <div class="container-fluid">
+        
+
+        <!-- Main row -->
+        <div class="row">
+          <!-- Left col -->
+          <div class="col-md-12">
+            <!-- MAP & BOX PANE -->
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Mapa em tempo real de passageiros</h3>
+                <div class="card-tools">
+                  <a href="http://159.89.52.185:8080/home-mapa" title="Mapa de Motoristas"><i class="nav-icon fas fa-motorcycle mr-2"></i> </a>
+                  <a href="http://159.89.52.185:8080/home2" title="Mapa de Passageiros"> <i class="nav-icon fas fa-user-cog"></i> </a>
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body p-0">
+                <div class="d-md-flex">
+                  <div class="p-1 flex-fill" style="overflow: hidden">
+                    <!-- Map will be created here -->
+                    <div id="world-map-markers" style="height: 325px; overflow: hidden">
+                      <style>
+                        /* Always set the map height explicitly to define the size of the div
+                         * element that contains the map. */
+                        #map {
+                          height: 100%;
+                        }
+                        
+                      </style>
+                      <div id="map"></div>
+                     
+                      <script type="text/javascript">
+                        var customLabel = {
+                          restaurant: {
+                            label: 'R'
+                          },
+                          bar: {
+                            label: 'B'
+                          }
+                        };
+        function initMap() {
+        
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: new google.maps.LatLng(-8.8399876, 13.2894368),
+          zoom: 9
+        });
+        
+        var infoWindow = new google.maps.InfoWindow;
+
+          // Change this depending on the name of your PHP or XML file
+          downloadUrl('http://159.89.52.185:8080/mapa2', function(data) {
+            var xml = data.responseXML;
+            var markers = xml.documentElement.getElementsByTagName('marker');
+            Array.prototype.forEach.call(markers, function(markerElem) {
+              var name = markerElem.getAttribute('name');
+              var address = markerElem.getAttribute('address');
+              var type = markerElem.getAttribute('type');
+              var point = new google.maps.LatLng(
+                  parseFloat(markerElem.getAttribute('lat')),
+                  parseFloat(markerElem.getAttribute('lng')));
+
+              var infowincontent = document.createElement('div');
+              var strong = document.createElement('strong');
+              strong.textContent = name
+              infowincontent.appendChild(strong);
+              infowincontent.appendChild(document.createElement('br'));
+
+              var text = document.createElement('text');
+              text.textContent = address
+              infowincontent.appendChild(text);
+              var icon = customLabel[type] || {};
+              var marker = new google.maps.Marker({
+                map: map,
+                position: point,
+                label: icon.label,
+                title:'Passageiro',
+                icon:'http://159.89.52.185:8080/img/icon-passageiro.png'
+              });
+              marker.addListener('click', function() {
+                infoWindow.setContent(infowincontent);
+                infoWindow.open(map, marker);
+              });
+            });
+          });
+        }
+      function downloadUrl(url, callback) {
+        var request = window.ActiveXObject ?
+            new ActiveXObject('Microsoft.XMLHTTP') :
+            new XMLHttpRequest;
+
+        request.onreadystatechange = function() {
+          if (request.readyState == 4) {
+            request.onreadystatechange = doNothing;
+            callback(request, request.status);
+          }
+        };
+
+        request.open('GET', url, true);
+        request.send(null);
+      }
+      function doNothing() {}
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0R8RyGL1x3IcwjThoUxnBROm21nxn_3Y&callback=initMap">
+    </script>
+
+                    </div>
+                  </div>
+                  
+                </div><!-- /.d-md-flex -->
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div></div>
+        
+
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+

@@ -1,0 +1,66 @@
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <div class="content">
+      <div class="container-fluid">
+        {loop="$lista_empresas"}
+        <div class="row">
+          <div class="col-md-12"><h4>{$value.nome}</h4></div>
+          <div class="col-lg-6">
+            <!-- small box -->
+            <div class="small-box bg-white">
+              <div class="inner">
+                <h3></h3>
+
+                <p>Relatório de Viagens - {$value.nome}</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-bag"></i>
+              </div>
+              <a href="http://159.89.52.185:8080/config/report-viagens/{$value.id}" class="small-box-footer"> Mais informações <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+
+            
+          </div>
+          <!-- /.col-md-4 -->
+          <div class="col-lg-6">
+            <div class="small-box bg-white">
+              <div class="inner">
+                <h3></h3>
+
+                <p>Relatório de Motoristas - {$value.nome}</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-bag"></i>
+              </div>
+              <a href="http://159.89.52.185:8080/config/report-motoristas/{$value.id}" class="small-box-footer"> Mais informações <i class="fas fa-arrow-circle-right"></i></a>
+            </div>            
+          </div>
+          <!-- /.col-md-4 -->
+          <!-- /.col-md-4 -->
+          
+          <!-- /.col-md-6 -->
+        </div>
+        <br>
+        {/loop}
+        <!-- /.row -->
+
+      
+        
+
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->

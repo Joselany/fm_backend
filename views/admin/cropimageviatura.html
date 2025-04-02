@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>  
+        <title> Chofer </title> 
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+		    <link rel="stylesheet" href="http://159.89.52.185:8080/assets/site/assets/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="http://159.89.52.185:8080/assets/css/croppie.css" />
+    </head>  
+<body>  
+  <div class="container text-center" id="formFile">
+    
+			<div class="panel panel-default text-center">
+  				<div class="panel-heading">Carregar Imagem</div>
+  				<div class="panel-body" align="center">
+  					<input type="file" name="upload_image" id="upload_image">
+  					<div id="uploaded_image"></div>
+  				</div>
+  		</div>
+  </div>
+  <div id="uploadimageModal" class="container">
+	   <div class="row">
+      		<div class="col-md-12">
+        		<div class="row">
+              <div class="col-md-12 ">
+                  <button class="btn btn-success btn-block crop_image">Guardar Imagem</button>
+                  <br>
+              </div>
+  					  <div class="col-md-12 text-center">
+                  <img src="/img/bx_loader.gif" style="display:none; width:50px; margin: 0 auto;" id="loader"/>
+						      <div id="image_demo"></div>
+                  
+  					  </div>
+              
+				    </div>
+      		</div>
+    	</div>
+    </div>
+</div>
+ 
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <a href="http://159.89.52.185:8080/viaturas" title="Livros" class="btn btn-primary btn-block">Voltar</a>
+        </div>
+    </div>
+</div>
+<script src="http://159.89.52.185:8080/assets/js/jquery.min.js"></script>
+<script src="http://159.89.52.185:8080/assets/site/assets/js/bootstrap.min.js"></script>
+<script src="http://159.89.52.185:8080/assets/js/croppie.js"></script>
+<script>  
+$(document).ready(function(){
+ 
+  $image_crop = $('#image_demo').croppie({
+    enableExif: true,
+    viewport: {
+      width:400,
+      height:200,
+      type:'square' //circle
+    },
+    boundary:{
+      width:410,
+      height:210
+    }
+  });
+
+  $('#upload_image').on('change', function(){
+    var reader = new FileReader();
+    reader.onload = function (event) {
+      $image_crop.croppie('bind', {
+        url: event.target.result
+      }).then(function(){
+        console.log('jQuery bind complete');
+      });
+    }
+    reader.readAsDataURL(this.files[0]);
+    $('#uploadimageModal').show();
+    $('#formFile').hide();
+  });
+
+  $('.crop_image').click(function(event){
+    
+        
+    $image_crop.croppie('result', {
+      type: 'canvas',
+      size: 'viewport'
+    }).then(function(response){
+      $.ajax({
+        url:"http://159.89.52.185:8080/viaturas/img-{$viaturas.id}",
+        type: "POST",
+        data:{"icon": response},
+        success:function(data)
+        {
+          $('#uploadimageModal').modal('hide');
+          $('#uploaded_image').html(data);
+          $('#uploadimageModal').hide();
+          $('#formFile').show();
+        },
+        beforeSend: function(){
+                $('#loader').css({display:"block"});
+                },
+              complete: function(){
+                $('#loader').css({display:"none"});
+        }
+      });
+    })
+  });
+
+});  
+</script>
+</body>  
+</html>
+

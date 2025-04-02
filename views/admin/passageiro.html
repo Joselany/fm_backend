@@ -1,0 +1,112 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+<!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h3>Formulário de passageiros</h3>
+            <strong class="m-0 text-dark">Foram encontrados {$total_passageiros} registo(s)...</strong>
+          </div><!-- /.col -->
+          
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+<!-- Main content -->
+<div class="content">
+      <div class="container-fluid">
+        <div class="row">
+  	<div class="col-md-12">
+  		<div class="card">
+            
+            <div class="card-header">
+              <div class="card-tools">
+                <form action="http://159.89.52.185:8080/passageiros">
+                  <div class="input-group input-group-md">
+                    <select name="filtro" class="form-control">
+                        {if="$filtro!=''"}<option value="{$filtro}">{$filtro}</option>{else}<option value="">Todos estados</option>{/if}
+                        <option value="">Todos estados</option>
+                        <option value="Activos">Activos</option> 
+                        <option value="Banidos">Banidos</option>   
+                    </select>
+                    <input type="text" name="search" class="form-control float-right" placeholder="Procurar" value="{$search}">
+                    <div class="input-group-append">
+                      <button type="submit" class="btn btn-default"><i class="fas fa-filter"></i></button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <div class="card-body p-2">
+              <table class="table table-bordered table-hover dataTable p-1">
+                <thead>
+                  <tr>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Telefone</th>
+                    <th>Foto</th>
+                    <th >&nbsp;</th>
+                    <th >&nbsp;</th>
+                    <th >&nbsp;</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {loop="$passageiro"}
+                  <tr>
+                    <td>{$value.nome} {$value.apelido}</td>
+                    <td>{$value.email}</td>
+                    <td>{$value.telefone}</td>
+                    <td>
+                      <a href="http://159.89.52.185:8080/passageiros/img-{$value.id}">
+                        <img src="http://159.89.52.185:8080/{$value.foto}" width="75">
+                      </a>
+                    </td>
+                    <td><a href="http://159.89.52.185:8080/passageiros/{$value.id}" class="btn btn-primary btn-md"> Editar </a> </td>
+                   
+                        {if="$value.status_cadastro==1"}
+                         <td>
+                          <a href="http://159.89.52.185:8080/passageiros/{$value.id}/desactivar" onclick="return confirm('Deseja realmente desactivar este registro?')" class="btn btn-danger btn-md"> Desactivar </a>
+                         </td><td></td> 
+                        {/if}
+                        {if="$value.status_cadastro==0"}
+                          <td>
+                            <a href="http://159.89.52.185:8080/passageiros/{$value.id}/activar" onclick="return confirm('Deseja realmente activar este registro?')" class="btn btn-success btn-md"> Activar </a>
+                          </td><td>
+                            <form action="http://159.89.52.185:8080/passageiros/{$value.id}/banir" method="get">
+                              <input type="text" name="justificativa" required>
+                              <input type="submit" onclick="return confirm('Deseja realmente banir este passageiro?')" class="btn btn-danger btn-sm" value="Banir">
+                          </form>
+                            
+                          </td>
+                        {/if}
+                        {if="$value.status_cadastro==-1"}
+                          <td>
+                            <a href="http://159.89.52.185:8080/passageiros/{$value.id}/activar" onclick="return confirm('Deseja realmente reactivar este registro?')" class="btn btn-success btn-md"> Reconsiderar </a> 
+                          </td><td></td> 
+                        {/if}
+                   
+                  </tr>
+                  {/loop}
+                </tbody>
+              </table>
+            </div>
+            <!-- /.box-body -->
+            <div class="card-footer clearfix">
+              <ul class="pagination pagination-md m-1 float-right">
+                {loop="$pages"}
+                <li><a class="page-link" href="{$value.href}">{$value.text}</a></li>
+                {/loop}
+              </ul>
+            </div>
+          </div>
+  	</div>
+  </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

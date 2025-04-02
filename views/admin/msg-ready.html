@@ -1,0 +1,57 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+<!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Caixa de Entrada | {$msg.name} {$msg.nickname} - {$msg.email}</h1>
+          </div><!-- /.col -->
+          
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+<!-- Main content -->
+    <div class="content">
+      <div class="container-fluid">
+        <div class="row">
+  
+        <!-- /.box-header -->
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header with-border">
+              <h3 class="card-title"> </h3>
+
+              <div class="card-tools float-left">
+                
+              </div>
+              <div class="mailbox-controls  text-left">
+                <a href="http://159.89.52.185:8080/config/msg" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Voltar</a>
+                <a href="http://159.89.52.185:8080/config/msg/{$msg.num}/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger"><i class="fa fa-trash"></i> Excluir</a>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+              <div class="mailbox-read-info">
+                <h3>Assunto: {$msg.subject}</h3>
+                <h5>De: {$msg.name} {$msg.nickname} - {$msg.email}
+                  <span class="mailbox-read-time pull-right">{$msg.date}</span></h5>
+              </div>
+              <!-- /.mailbox-read-info -->
+              
+              <!-- /.mailbox-controls -->
+              <div class="mailbox-read-message">
+                  {$msg.note}
+            </div>
+          <!-- /.box-body -->
+          
+     
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
